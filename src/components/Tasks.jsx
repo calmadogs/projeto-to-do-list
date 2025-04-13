@@ -13,26 +13,28 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
   }
 
   return (
-    <ul className=" space-y-4 p-6 bg-slate-200 rounded-md shadow">
-      {tasks.map((task) => (
-        <li key={task.id} className="flex gap-2">
-          <button
-            onClick={() => onTaskClick(task.id)}
-            className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
-              task.isCompleted && "line-through"
-            }`}
-          >
-            {task.title}
-          </button>
-          <Button onClick={() => onSeeDetailsClick(task)}>
-            <ChevronRightIcon />
-          </Button>
-          <Button onClick={() => onDeleteTaskClick(task.id)}>
-            <TrashIcon />
-          </Button>
-        </li>
-      ))}
-    </ul>
+    <div className="bg-slate-200 rounded-md shadow max-h-[300px] overflow-y-auto overflow-x-hidden p-4">
+      <ul className="space-y-4">  
+        {tasks.map((task) => (
+          <li key={task.id} className="flex gap-2">
+            <button
+              onClick={() => onTaskClick(task.id)}
+              className={`bg-slate-400 break-words text-left flex-1 text-white p-2 rounded-md max-h-[4.5rem] overflow-y-auto ${
+                task.isCompleted && "line-through"
+              }`}
+            >
+              {task.title}
+            </button>
+            <Button onClick={() => onSeeDetailsClick(task)}>
+              <ChevronRightIcon />
+            </Button>
+            <Button onClick={() => onDeleteTaskClick(task.id)}>
+              <TrashIcon />
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
